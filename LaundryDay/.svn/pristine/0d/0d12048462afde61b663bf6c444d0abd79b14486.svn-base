@@ -1,0 +1,58 @@
+package com.qudgar.laundryday;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DateList
+{
+	private List<Boolean> myDay_1_List = new ArrayList<Boolean>();
+	private List<Boolean> myDay_2_List = new ArrayList<Boolean>();
+	private List<Boolean> myDay_3_List = new ArrayList<Boolean>();
+	private List<Boolean> myDay_4_List = new ArrayList<Boolean>();
+	private List<Boolean> myDay_5_List = new ArrayList<Boolean>();
+	
+	private int myTotalList = 5;
+	
+	public void CreateEmptyList()
+	{
+		for (int index = 0; index < 7; index++)
+		{
+			myDay_1_List.add(false);
+			myDay_2_List.add(false);
+			myDay_3_List.add(false);
+			myDay_4_List.add(false);
+			myDay_5_List.add(false);
+		}
+	}
+	
+	public int GetTotalDays()
+	{
+		return myTotalList;
+	}
+	
+	public int GetTotalPass()
+	{
+		return myDay_1_List.size();
+	}
+	
+	public void SetDayValue(int aDateID, int aPassID, boolean aValue)
+	{
+		if (aDateID == 0) {myDay_1_List.set(aPassID, aValue);}
+		if (aDateID == 1) {myDay_2_List.set(aPassID, aValue);}
+		if (aDateID == 2) {myDay_3_List.set(aPassID, aValue);}
+		if (aDateID == 3) {myDay_4_List.set(aPassID, aValue);}
+		if (aDateID == 4) {myDay_5_List.set(aPassID, aValue);}
+	}
+	
+	
+	public Boolean GetDayandDate(int aDateID, int aPassID)
+	{
+		if (aDateID == 0) {return myDay_1_List.get(aPassID);}
+		if (aDateID == 1) {return myDay_2_List.get(aPassID);}
+		if (aDateID == 2) {return myDay_3_List.get(aPassID);}
+		if (aDateID == 3) {return myDay_4_List.get(aPassID);}
+		if (aDateID == 4) {return myDay_5_List.get(aPassID);}
+		
+		return false;
+	}
+}

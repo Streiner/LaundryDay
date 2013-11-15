@@ -1,0 +1,26 @@
+package com.qudgar.laundryday;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.widget.TextView;
+
+public class Reminders extends Activity
+{
+
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.reminders_layout);
+		InitializeComponents();
+		
+	}
+	public void InitializeComponents()
+	{
+		TextView currentUser;
+		currentUser = (TextView)findViewById(R.id.textview_currentuser);
+		currentUser.setText("Inloggad som " + LocalData.GetInstance().GetLogonName());
+	}
+
+}

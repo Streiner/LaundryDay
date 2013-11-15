@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">LaundryDay</string>
+    
+    <string name="action_settings">Settings</string>
+    
+    <string name="everywhere_title">BRF Blekingsborgs</string>
+    
+    <string name="login_text_username">Användarnamn</string>
+    <string name="login_text_password">Lösenord</string>
+    <string name="login_text_remember">Kom ihåg mig</string>
+    <string name="login_text_login">LOGGA IN</string>
+	
+	<string name="mainmenu_mybookedtimes">Mina Bokningar</string>
+	<string name="mainmenu_booknewtime">Boka Tvättid</string>
+	<string name="mainmenu_reminders">Påminnelser</string>
+	<string name="mainmenu_user">Inloggad som</string>
+
+	<string name="roomtype_room1">Tvätt+Torkrum</string>
+	<string name="roomtype_room2">Tvättrum 1+2</string>
+	<string name="roomtype_room3">Tvättrum 3+4</string>
+	<string name="roomtype_room4">Mangelrum</string>
+	
+	<string name="settings_autologon">Autoinloggning</string>
+	<string name="settings_about">Om utvecklarna</string>
+	
+	<string name= "menu_about">Om appen"></string>
+	<string name="menu_settings">Inställningar</string>
+	<string name="menu_logout">Logga ut</string>
+	
+	<string name="hello_world">Logga ut</string>
+	
+</resources>

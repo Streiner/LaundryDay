@@ -1,0 +1,67 @@
+package com.qudgar.laundryday;
+
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.TextView;
+
+public class bookedCard extends View
+{
+	private final Rect card = new Rect();
+	
+	private float width, height;
+	private int selX, selY;
+
+	public bookedCard(Context context) 
+	{
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		
+		w = (int)width;
+		h = (int) (height/5.0);
+		setFocusable(true);
+		setFocusableInTouchMode(true);
+		super.onSizeChanged(w, h, oldw, oldh);
+		
+	}
+	
+	private void getRect(int x, int y)
+	{
+		card.set((int) (x * width), (int) (y*height), (int) (x*width + width), (int) (y*height+height));
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) 
+	{	
+		Paint background = new Paint();
+		background.setColor(R.color.white);
+		canvas.drawRect(0, 0, getWidth(), getHeight(), background);
+		
+		Paint dark = new Paint();
+		dark.setColor(R.color.pressed);
+		
+		 Paint hilite = new Paint();
+	     hilite.setColor(getResources().getColor(R.color.focused));
+		
+		for (int i = 0; i < 3; i++)
+		{
+			//canvas.drawRect(10, width, 10, width, dark);
+			
+			 canvas.drawLine(0, i * height, getWidth(), i * height,
+		               dark);
+		         canvas.drawLine(0, i * height + 1, getWidth(), i * height
+		               + 1, hilite);
+		         canvas.drawLine(i * width, 0, i * width, getHeight(), dark);
+		         canvas.drawLine(i * width + 1, 0, i * width + 1,
+		               getHeight(),  hilite);
+		}
+		
+	}
+	
+}

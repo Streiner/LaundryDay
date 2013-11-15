@@ -1,0 +1,86 @@
+package com.qudgar.laundryday;
+
+
+
+
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
+
+public class LogIn extends Activity implements OnClickListener
+{
+	TextView tvUsername;
+	TextView tvPassword;
+	CheckBox autoLogon;
+	Context context;
+	SavedSettings mySavedSettings = null;
+	
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) 
+	{
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.login_layout);
+		
+		
+		LocalData.CreateInstance();
+
+		mySavedSettings = new SavedSettings(this);
+		mySavedSettings.LoadData();
+		InitializeComponents();
+	}
+
+
+	public void InitializeComponents()
+	{	
+		if (mySavedSettings.GetRememberMe())
+		{
+			LocalData.GetInstance().SetLogonName(mySavedSettings.GetUserName());
+			LocalData.GetInstance().SetPassword(mySavedSettings.GetPassword());
+			LocalData.GetInstance().SetAutoLogon(mySavedSettings.GetRememberMe());
+			LocalData.GetInstance().SetAlarm(10, mySavedSettings.GetAlarm(10));
+			LocalData.GetInstance().SetAlarm(30, mySavedSettings.GetAlarm(30));
+			LocalData.GetInstance().SetAlarm(60, mySavedSettings.GetAlarm(60));
+			LocalData.GetInstance().SetAlarm(90, mySavedSettings.GetAlarm(90));
+			LocalData.GetInstance().SetAlarm(120, mySavedSettings.GetAlarm(120));
+		
+			StartMainMenu();
+		}
+		
+		tvUsername = (TextView)findViewById(R.id.login_username);
+		tvPassword  = (TextView)findViewById(R.id.login_password);
+		autoLogon = (CheckBox)findViewById(R.id.checkbox_login_remember);
+		Button buttonLogIn = (Button)findViewById(R.id.button_login);
+		buttonLogIn.setOnClickListener(this);
+	}
+	
+	public void onClick(View btn)
+	{
+		int id = btn.getId();
+		if (id == R.id.button_login) 
+		{
+			if (autoLogon.isChecked())
+			{
+				mySavedSettings.Save(tvUsername.getText().toString(), tvPassword.getText().toString());
+			}
+			LocalData.GetInstance().SetAutoLogon(autoLogon.isChecked());
+			LocalData.GetInstance().SetLogonName(tvUsername.getText().toString());
+			LocalData.GetInstance().SetPassword(tvPassword.getText().toString());
+			
+			StartMainMenu();
+		}
+	}
+	
+	
+	private void StartMainMenu()
+	{
+		Intent LogInIntent = new Intent(this, MainMenu.class);
+		startActivity(LogInIntent);
+	}
+}

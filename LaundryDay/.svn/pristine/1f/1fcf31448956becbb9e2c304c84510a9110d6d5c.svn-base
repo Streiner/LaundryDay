@@ -1,0 +1,66 @@
+package com.qudgar.laundryday;
+
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.util.Log;
+import android.content.Context;
+
+public class SavedSettings
+{
+
+	private final Context context;
+	
+	private final static String LaundryDaySavedSettings = "savedPreferences";
+    private final static String USERNAME_KEYNAME = "USERNAME_KEY";
+    private final static String PASSWORD_KEYNAME = "PASSWORD_KEY";
+    private final static String REMEMBERME_KEYNAME = "REMEMBERME_KEY";
+	
+	private String myUserName;
+	private String myPassword;
+	private Boolean myRememberMe;
+	
+	public SavedSettings(Context ctx)
+	{
+		this.context = ctx;
+	}
+	
+	
+	public void LoadData()
+	{
+		SharedPreferences prefs = context.getSharedPreferences(LaundryDaySavedSettings, Context.MODE_PRIVATE);
+		
+		myUserName = prefs.getString(USERNAME_KEYNAME, "unknown");
+		myPassword = prefs.getString(PASSWORD_KEYNAME, "unknown");
+		myRememberMe = prefs.getBoolean(REMEMBERME_KEYNAME, false);
+	}
+	
+	public void Save(String aUserName, String aPassword)
+	{
+		SharedPreferences prefs = context.getSharedPreferences(LaundryDaySavedSettings, Context.MODE_PRIVATE);
+		SharedPreferences.Editor edit = prefs.edit();
+		
+		edit.putString(USERNAME_KEYNAME, aUserName);
+		edit.putString(PASSWORD_KEYNAME, aPassword);
+		edit.putBoolean(REMEMBERME_KEYNAME, true);
+		
+		edit.commit();
+	}
+	
+	public Boolean GetRememberMe()
+	{
+		return myRememberMe;	
+	}
+	
+	public String GetUserName()
+	{
+		return myUserName;
+	}
+	
+	public String GetPassword()
+	{
+		return myPassword;
+	}
+	
+
+}

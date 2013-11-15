@@ -1,0 +1,70 @@
+package com.qudgar.laundryday;
+
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.view.View;
+import android.widget.TextView;
+
+public class bookedCard extends View
+{
+	private final Rect card = new Rect();
+	
+	private float width, height;
+	private int selX, selY;
+	
+	Bitmap board;
+
+	public bookedCard(Context context) 
+	{
+		super(context);
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) {
+		
+		width = w;
+		height = h/6;
+		getRect(selX, selY);
+		super.onSizeChanged(w, h, oldw, oldh);
+		
+	}
+	
+	private void getRect(int x, int y)
+	{
+		card.set((int) (x * width), (int) (y*height), (int) (x*width + width), (int) (y*height+height));
+	}
+
+	@Override
+	protected void onDraw(Canvas canvas) 
+	{	
+		
+		Paint background = new Paint();
+		background.setColor(getResources().getColor(R.color.green));
+
+		//canvas.drawRect(0, 0, getWidth(), getHeight(), background);
+		
+		board = BitmapFactory.decodeResource(getResources(), R.drawable.background480x800); //försöka sätta bild som bakgrund m. bitmap
+		canvas.setBitmap(board);
+		
+		Paint dark = new Paint();
+		dark.setColor(getResources().getColor(R.color.orange));
+		
+		 Paint hilite = new Paint();
+	     hilite.setColor(getResources().getColor(R.color.green));
+		
+		for (int i = 0; i < 3; i++)
+		{			
+			 canvas.drawLine(0, i * height, getWidth(), i * height, background);
+		     canvas.drawLine(0, i * height + 1, getWidth(), i * height + 1, hilite);
+		     canvas.drawLine(i * width, 0, i * width, getHeight(), dark);
+		     canvas.drawLine(i * width + 1, 0, i * width + 1, getHeight(),  hilite);
+		}
+		
+	}
+	
+}

@@ -1,0 +1,9 @@
+package com.qudgar.laundryday;
+
+public class WashTime 
+{
+
+	public WashTime(String aUser)
+	{
+	}
+}

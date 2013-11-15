@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background480x800"
+     >
+    <TextView
+        android:id="@+id/textview_currentuser"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#000000"
+        android:text="@string/mainmenu_user"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button_room1"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="@string/roomtype_room1" 
+        android:layout_marginTop="30dp"
+        android:textColor="#FFFFFF"/>
+
+    <Button
+        android:id="@+id/button_room2"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button_room1"
+        android:text="@string/roomtype_room2"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button_room3"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button_room2"
+        android:text="@string/roomtype_room3"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/button_room4"
+        android:layout_width="fill_parent"
+        android:layout_height="80dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button_room3"
+        android:text="@string/roomtype_room4"
+        android:textColor="#FFFFFF" />
+
+</RelativeLayout>

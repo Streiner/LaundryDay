@@ -1,0 +1,53 @@
+package com.qudgar.laundryday;
+
+public class LocalData
+{
+	private static LocalData myInstance = null;
+	
+	
+	private String myLogonName;
+	private String myPassword;
+	private Boolean myAutoLogon;
+	
+	public static void CreateInstance()
+	{
+		myInstance = new LocalData();
+	}
+	
+
+	public static LocalData GetInstance()
+	{
+		return myInstance;
+	}
+	
+	public void SetLogonName(String aLogonName)
+	{
+		myLogonName = aLogonName;
+	}
+	
+	public void SetPassword(String aPassword)
+	{
+		myPassword = aPassword;
+	}
+	
+	public void SetAutoLogon(Boolean aBool)
+	{
+		myAutoLogon = aBool;
+	}
+	
+	public String GetLogonName()
+	{
+		return myLogonName;
+	}
+	
+	public String GetPassword()
+	{
+		return myPassword;
+	}
+	
+	public Boolean GetAutoLogon()
+	{
+		return myAutoLogon;
+	}
+	
+}

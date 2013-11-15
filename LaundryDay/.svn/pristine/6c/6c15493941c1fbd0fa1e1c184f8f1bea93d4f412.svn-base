@@ -1,0 +1,62 @@
+package com.qudgar.laundryday;
+
+
+
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.Menu;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.TextView;
+import android.content.Context;
+
+
+public class RoomMenu extends Activity implements OnClickListener
+{
+
+	
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.roomtype_layout);
+		InitializeComponents();
+	}
+	
+	public void InitializeComponents()
+	{
+		TextView currentUser;
+		currentUser = (TextView)findViewById(R.id.textview_currentuser);
+		currentUser.setText("Inloggad som " + LocalData.GetInstance().GetLogonName());
+		
+		Button buttonBook1 = (Button)findViewById(R.id.button_room1);
+		buttonBook1.setOnClickListener(this);
+		
+	}
+
+
+	@Override
+	public void onClick(View clicked) 
+	{
+		int btn = clicked.getId();
+		switch (btn)
+		{
+			case R.id.button_room1:
+				ShowBookRoom();
+					break;
+		}
+	}
+	private void ShowBookRoom()
+	{
+		Intent BookIntent = new Intent(this, BookRoom.class);
+		startActivity(BookIntent);
+	}
+
+	
+	
+	
+
+}

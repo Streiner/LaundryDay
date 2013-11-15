@@ -1,0 +1,145 @@
+package com.qudgar.laundryday;
+
+import android.content.Context;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Paint.Style;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+
+public class bookedCard extends View
+{
+	
+	
+	Paint background;
+	Paint lines;
+	Paint foreground;
+	Paint selected;
+	
+	private final MyBookedTimes book;
+	private float width, height;
+	private int selX, selY;
+	private int myGridSizeX = 10;
+	private int myGridSizeY = 7;
+	
+	Canvas canvas = new Canvas();
+	
+	private final Rect selRect = new Rect();
+	
+	public bookedCard(Context context)
+	{
+		super(context);
+		this.book = (MyBookedTimes) context;
+		setFocusable(true);
+		setFocusableInTouchMode(true);
+		InitiateColorsAndText();
+	}
+	
+
+	@Override
+	protected void onSizeChanged(int w, int h, int oldw, int oldh) 
+	{
+		width = w;
+		height = h/7;
+		getRect(selX, selY, selRect);
+		super.onSizeChanged(w, h, oldw, oldh);
+	}
+	
+	private void getRect(int x, int y, Rect rect) 
+	{
+	      rect.set((int) (x * width), (int) (y * height), (int) (x
+	            * width + width), (int) (y * height + height));
+	}
+	
+	private void InitiateColorsAndText()
+	{
+		background = new Paint();
+		background.setColor(getResources().getColor(R.color.black));
+		
+		lines = new Paint();
+		lines.setColor(getResources().getColor(R.color.line));
+		
+		foreground = new Paint(Paint.ANTI_ALIAS_FLAG);
+		foreground.setColor(getResources().getColor(R.color.white));
+		foreground.setStyle(Style.STROKE);
+		foreground.setTextSize(height * 0.25f);
+		foreground.setTextAlign(Paint.Align.LEFT);
+		
+		
+		
+		selected = new Paint();
+	    selected.setColor(getResources().getColor(R.color.marked));
+				
+	}
+
+
+	@Override
+	   protected void onDraw(Canvas aCanvas)
+	 {
+			canvas = aCanvas;
+	      //canvas.drawRect(0, 0, getWidth(), getHeight(), background);
+	      canvas.drawBitmap(BitmapFactory.decodeResource(getResources(), R.drawable.background480x800), 0, 0, null);
+
+	      for (int i = 0; i < LocalData.GetInstance().GetBookedTimeSize(); i++)
+	      {
+	         canvas.drawLine(0, i * height, getWidth(), i * height, lines);
+	         canvas.drawLine(0, i * height + 1, getWidth(), i * height + 1, lines);
+	         //canvas.drawRect(Rect, background);		// lek med detta, rita BG på rutorna, halvfunkar
+	         
+	         
+	         
+	         canvas.drawText(LocalData.GetInstance().GetBookedDay(i), 20.0f, i * height + 30.0f, foreground);
+			 foreground.setTextSize(height * 0.50f);
+	         canvas.drawText(LocalData.GetInstance().GetBookedDate(i), 20.0f, i * height +85.0f, foreground);
+			 foreground.setTextSize(height * 0.80f);
+			 foreground.setTextAlign(Paint.Align.RIGHT);
+	         canvas.drawText(LocalData.GetInstance().GetBookedPass(i), width - 20.0f, i * height +78.0f, foreground);
+			 foreground.setTextSize(height * 0.25f);
+			 foreground.setTextAlign(Paint.Align.LEFT);
+	         
+			  if (i == LocalData.GetInstance().GetBookedTimeSize()-1)
+			  {
+			        canvas.drawLine(0, (i+1) * height, getWidth(), (i+1) * height, lines);
+			        canvas.drawLine(0, (i+1) * height + 1, getWidth(), (i+1) * height + 1, lines);
+			  }
+	      }
+
+	      canvas.drawRect(selRect, selected);
+		  invalidate(selRect);
+	   }
+	
+
+	@Override
+	   public boolean onTouchEvent(MotionEvent event)
+	{
+	      if (event.getAction() != MotionEvent.ACTION_DOWN)
+	         return super.onTouchEvent(event);
+
+	      select((int) (event.getX() / width),
+	            (int) (event.getY() / height));
+	          
+	      return true;
+	   }
+	
+	 
+	 private void select(int x, int y)
+	 {
+	     invalidate(selRect);
+	      selX = Math.min(Math.max(x, 0), myGridSizeX-1);
+	      selY = Math.min(Math.max(y, 0), myGridSizeY-1);
+	      getRect(selX, selY, selRect);
+	      CurrentSelectedRect(selX, selY);
+	      invalidate(selRect);
+	 }
+	 
+	 
+	 private void CurrentSelectedRect(int aSelX, int aSelY)
+	 {
+		 LocalData.GetInstance().DeleteBookedTime(aSelY);
+		 invalidate();
+	 }
+	 	
+	
+}

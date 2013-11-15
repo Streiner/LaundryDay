@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background480x800"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textview_currentuser"
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:background="#000000"
+        android:text="@string/mainmenu_user"
+        android:textColor="#999999" />
+
+    <Button  
+        android:id="@+id/button_myBookedTimes"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:text="@string/mainmenu_mybookedtimes"
+        android:textColor="#FFFFFF"
+        />
+  
+    
+   
+
+    <Button
+        android:id="@+id/button_bookNewTime"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button_myBookedTimes"
+        android:layout_marginTop="5dp"
+        android:text="@string/mainmenu_booknewtime"
+        android:textColor="#FFFFFF"
+        />
+
+    <Button
+        android:id="@+id/button_reminders"
+        android:layout_width="fill_parent"
+        android:layout_height="75dp"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/button_bookNewTime"
+        android:layout_marginTop="5dp"
+        android:text="@string/mainmenu_reminders"
+        android:textColor="#FFFFFF"
+         />
+
+</RelativeLayout>

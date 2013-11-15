@@ -1,0 +1,51 @@
+package com.qudgar.laundryday;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class DateList
+{
+	List<List<Boolean>> myList = new ArrayList<List<Boolean>>();
+	
+	
+	public void CreateEmptyList()
+	{
+		myList.clear();
+		
+		List<Boolean> tempList = new ArrayList<Boolean>();
+		
+		for (int index = 0; index < 7; index++)
+		{
+			tempList.add(false);
+		}
+		for (int index = 0; index < 20; index++)
+		{
+			myList.add(tempList);
+		}
+	}
+	
+	public int GetTotalDays()
+	{
+		return myList.size();
+	}
+	
+	public int GetTotalPass()
+	{
+		return myList.get(0).size();
+	}
+	
+	public void AddDayValue(int aDateID, int aPassID, boolean aValue)
+	{
+		myList.get(aDateID).add(aPassID, aValue);
+	}
+	
+	public List<Boolean> GetWholeDayList(int aDayID)
+	{
+		return myList.get(aDayID);
+	}
+	
+	public Boolean GetDayandDate(int aDateID, int aPassID)
+	{
+		return myList.get(aDateID).get(aPassID);
+	}
+}

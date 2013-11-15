@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+      <color name="pressed">#ff006363</color>
+      <color name="focused">#ff006363</color>
+      <color name="standard">#ff006363</color>
+      <color name="background">#2cc9e6</color>
+      
+      <color name="black">#000000</color>
+      <color name="white">#FFFFFF</color>
+      
+      <color name="red">#A60000</color>
+      <color name="purple">#A600A6</color>
+      <color name="green">#25D500</color>
+      <color name="yellow">#FFF800</color>
+      <color name="orange">#FF7400</color>
+ </resources>
